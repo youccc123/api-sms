@@ -21,7 +21,7 @@ public class EnviaSMS  {
 		    	//System.out.println("Binding to the SMSC");
 
 		        //Connection myConnection = new Connection("localhost", 2775);
-		    	Connection myConnection = new Connection("200.85.32.101", 5600, true);
+		    	Connection myConnection = new Connection("softcr.ddns.net", 2775, true);
 		        myConnection.autoAckLink(true);
 		        myConnection.autoAckMessages(true);
 		        
@@ -32,11 +32,16 @@ public class EnviaSMS  {
 //		                "carsa", 
 //		                "C4rs4!1", 
 //		                null);
-		        myConnection.bind(
-		                Connection.TRANSMITTER,
-		                "carsa",
-		                "C4rs4!1",
-		                "SMS003");
+//		        myConnection.bind(
+//		                Connection.TRANSMITTER,
+//		                "carsa",
+//		                "C4rs4!1",
+//		                "SMS003");
+				myConnection.bind(
+						Connection.TRANSMITTER,
+						"smppclient1",
+						"password",
+						"SMS002");
 		        //Thread.sleep(200);
 		        Thread.sleep(500);
 //		        if (resp.getCommandStatus() != 0) {

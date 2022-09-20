@@ -36,7 +36,7 @@ public class SMS002 extends Thread implements ConnectionObserver {
 	private void connect() {
 		try {
 			//conn = new Connection("localhost", 2775, true);
-			conn = new Connection("200.85.32.101", 5600, true);
+			conn = new Connection("softcr.ddns.net", 2775, true);
 			//conn = new Connection("localhost", 9500, true);
 			conn.addObserver(this);
 		} catch (UnknownHostException uhe) {
@@ -50,7 +50,7 @@ public class SMS002 extends Thread implements ConnectionObserver {
 				//conn.bind(Connection.TRANSCEIVER, "smppclient1", "password", null);
 //				conn.bind(Connection.RECEIVER, "smppclient1", "password", null);
 				//conn.bind(Connection.RECEIVER, "carsa", "C4rs4!1", null);	
-				conn.bind(Connection.TRANSMITTER, "carsa", "C4rs4!1", null);
+				conn.bind(Connection.TRANSMITTER, "smppclient1", "password", null);
 				retry = true;
 			} catch (IOException ioe) {
 				try {

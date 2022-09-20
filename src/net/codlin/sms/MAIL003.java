@@ -40,7 +40,7 @@ public class MAIL003 {
 	public static void main(String[] args) {
 
 		try{
-		String mailSmtpHost = "mail.carsa.com.py";
+		String mailSmtpHost = "smtp-relay.sendinblue.com";//"mail.carsa.com.py";
 
 		String mailTo = "vtorres@carsa.com.py";
 		String mailCc = "";

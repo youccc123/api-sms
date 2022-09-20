@@ -2,11 +2,8 @@ package src.net.codlin.sms;
 
 import java.util.Properties;
 
-import javax.mail.Message;
-import javax.mail.MessagingException;
+import javax.mail.*;
 //import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
@@ -35,8 +32,12 @@ public class MAIL001 {
 				Properties props = new Properties();
 //				props.put("mail.smtp.auth", "true");
 //				props.put("mail.smtp.starttls.enable", "true");
-				props.put("mail.smtp.host", "mail.carsa.com.py");
-				props.put("mail.smtp.port", "25");
+				props.put("mail.smtp.host", "smtp-relay.sendinblue.com");
+				props.put("mail.smtp.port", "587");
+
+				String username = "youccc123carlos@gmail.com";
+				String password = "OGxS8zfLINy3K0kP";
+
 
 //				Session session = Session.getInstance(props,
 //				  new javax.mail.Authenticator() {
@@ -45,16 +46,15 @@ public class MAIL001 {
 //					}
 //				  });
 				Session session = Session.getInstance(props);
-
 				try {
 
 					Message message = new MimeMessage(session);
-					message.setFrom(new InternetAddress("hostmaster@carsa.com.py"));
+					message.setFrom(new InternetAddress("youccc123carlos@gmail.com"));
 					message.setRecipients(Message.RecipientType.TO,	InternetAddress.parse(mailTo));
 					message.setSubject(mailAsunto);
 					message.setText(mailMensaje);
 
-					Transport.send(message);
+					Transport.send(message, username, password);
 
 					System.out.println("Email enviado con EXITO.");
 
@@ -70,7 +70,7 @@ public class MAIL001 {
 	public static void main(String[] args) {
 	    System.out.println("Test");
 	    MAIL001 mail = new MAIL001();
-	    mail.execute("vtorres@carsa.com.py","Correo de Prueba","Este es un correo de prueba");
+	    mail.execute("youccc123carlos@gmail.com","Correo de Prueba","Este es un correo de prueba");
 	    System.out.println("Done�.");
 	}
 }

@@ -38,7 +38,7 @@ public class SMS003  {
 		    	//System.out.println("Binding to the SMSC");
 
 		        //Connection myConnection = new Connection("localhost", 2775);
-		    	Connection myConnection = new Connection("200.85.32.101", 5600, true);
+		    	Connection myConnection = new Connection("softcr.ddns.net", 2775, true);
 		        myConnection.autoAckLink(true);
 		        myConnection.autoAckMessages(true);
 		        

@@ -52,7 +52,7 @@ public class SMS004 extends Thread implements ConnectionObserver {
 	private void connect() {
 		try {
 			//conn = new Connection("localhost", 2775, true);
-			conn = new Connection("200.85.32.101", 5600, true);
+			conn = new Connection("softcr.ddns.net", 2775, true);
 			//conn = new Connection("localhost", 9500, true);
 			
 			conn.autoAckLink(true);
