@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd">
+<!--	<import resource="classpath:db-config.xml" />-->
+	<!-- Scans the classpath of this application for @Components to deploy as
+		beans -->
+	<context:component-scan base-package="py.softcr.sendsms.controller" />
+	<context:component-scan base-package="py.softcr.sendsms.service.implement" />
+	<context:component-scan base-package="py.softcr.security.postgressql.controller" />
+	<context:component-scan base-package="py.softcr.security.postgressql.security.services" />
+
+<!--	<context:component-scan	base-package="py.softcr.sendsms" />-->
+	<!-- classpath*:*.properties -->
+<!--	<context:property-placeholder location="classpath:db-config.xml" />-->
+
+<!--	<util:properties id="applicationProperties" location="classpath:softcrsms.properties" />-->
+	<context:property-placeholder location="classpath:application.properties" />
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="/WEB-INF/messages/messages_es" />
+		<property name="cacheSeconds" value="60" />
+	</bean>
+	<!-- Configures the @Controller programming model -->
+	<!--<mvc:annotation-driven /> -->
+	<mvc:annotation-driven content-negotiation-manager="contentNegotiationManager" />
+
+	<!-- Configures a handler for serving static resources by forwarding to
+		the Servlet container's default Servlet. -->
+	<mvc:default-servlet-handler />
+
+	<!-- Total customization - see below for explanation. -->
+	<bean id="contentNegotiationManager"
+		class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+		<property name="favorPathExtension" value="true" />
+		<property name="favorParameter" value="true" />
+		<property name="parameterName" value="mediaType" />
+		<property name="ignoreAcceptHeader" value="true" />
+		<property name="useJaf" value="false" />
+		<property name="defaultContentType" value="application/json" />
+
+		<property name="mediaTypes">
+			<map>
+				<entry key="json" value="application/json" />
+				<entry key="xml" value="application/xml" />
+			</map>
+		</property>
+	</bean>
+</beans>
