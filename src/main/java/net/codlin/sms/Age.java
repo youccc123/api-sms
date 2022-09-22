@@ -1,4 +1,4 @@
-package src.net.codlin.sms;
+package net.codlin.sms;
 
 class Age
 {
