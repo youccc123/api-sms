@@ -11,7 +11,7 @@ import py.softcr.security.postgressql.repository.UserRepository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-//    @Autowired
+    @Autowired
     UserRepository userRepository;
 
     @Override

@@ -8,17 +8,18 @@ import org.springframework.web.bind.annotation.*;
 import py.softcr.sendsms.bean.*;
 import py.softcr.sendsms.service.interfaces.SendSimpleSMSInterface;
 
+import javax.validation.Valid;
+
 @RestController
-//@RequestMapping("/apisms")
+@RequestMapping("/sms")
 public class SendSimpleSMSController {
     private static final Logger logger = LogManager.getLogger(SendSimpleSMSController.class);
-
 
     @Autowired
     private SendSimpleSMSInterface sendSimpleSMSService;
 
-    @RequestMapping(method = RequestMethod.POST, value ="/sendsimplesms")
-    public @ResponseBody ResponseEntity<SendSimpleSMSResponse> sendsimplesms(@RequestBody SendSimpleSMSRequest sendSimpleSMSRequest){
+    @GetMapping("/send")
+    public @ResponseBody ResponseEntity<?> sendsimplesms(@Valid @RequestBody SendSimpleSMSRequest sendSimpleSMSRequest){
         logger.info("Ejecutando REST SendSimpleSMS!!! + " + sendSimpleSMSRequest.toString());
         return sendSimpleSMSService.sendsimplesms(sendSimpleSMSRequest);
     }

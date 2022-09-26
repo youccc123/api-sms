@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,6 +20,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import py.softcr.security.postgressql.payload.response.JwtResponse;
 import py.softcr.security.postgressql.payload.request.LoginRequest;
@@ -33,19 +36,25 @@ import py.softcr.security.postgressql.repository.UserRepository;
 import py.softcr.security.postgressql.security.services.UserDetailsImpl;
 import py.softcr.sendsms.controller.WelcomeController;
 
+
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
+@Validated
 @RequestMapping("/auth")
 public class AuthController {
     private static final Logger logger = LogManager.getLogger(AuthController.class);
-
+    @Autowired
     AuthenticationManager authenticationManager;
-    UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
     RoleRepository roleRepository;
+    @Autowired
     PasswordEncoder encoder;
+    @Autowired
     JwtUtils jwtUtils;
 
-    @RequestMapping(method = RequestMethod.POST, value ="/signin")
+    @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         logger.info("Ejecutando REST signin!!!");
         Authentication authentication = authenticationManager.authenticate(
@@ -69,9 +78,6 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         logger.debug("Ejecutando REST signup!!!");
-        if (userRepository.count() == 0){
-            logger.debug("NO SE ENCONTRO NINGUN DATO!!!");
-        }
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
 
             return ResponseEntity

@@ -10,7 +10,12 @@ public class SendSimpleSMSResponse implements Serializable {
     private String receptor;
     private String mensaje;
 
-    public SendSimpleSMSResponse(){}
+    public SendSimpleSMSResponse(String operadora, String emisor, String receptor, String mensaje) {
+        this.operadora = operadora;
+        this.emisor = emisor;
+        this.receptor = receptor;
+        this.mensaje = mensaje;
+    }
 
     public String getOperadora() {
         return operadora;

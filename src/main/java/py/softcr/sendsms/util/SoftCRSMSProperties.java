@@ -3,6 +3,7 @@ package py.softcr.sendsms.util;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Properties;
 
@@ -18,7 +19,7 @@ public class SoftCRSMSProperties implements Serializable {
             properties = new Properties();
             try {
                 this.properties.load(this.getClass().getResourceAsStream("/softcrsms.properties"));
-            } catch (Exception e) {
+            } catch (IOException e) {
 
                 logger.error("error leyendo softcrsms.properties", e);
             }
