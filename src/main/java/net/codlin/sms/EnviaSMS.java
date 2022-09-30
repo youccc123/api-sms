@@ -1,30 +1,24 @@
 package net.codlin.sms;
 
-import ie.omk.smpp.*;
+import ie.omk.smpp.Address;
+import ie.omk.smpp.AlreadyBoundException;
+import ie.omk.smpp.BadCommandIDException;
+import ie.omk.smpp.Connection;
 import ie.omk.smpp.message.*;
 import ie.omk.smpp.version.VersionException;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import py.softcr.sendsms.util.SoftCRSMSProperties;
 
-import javax.management.RuntimeErrorException;
 import java.io.IOException;
-import java.lang.UnsupportedOperationException;
 import java.net.SocketTimeoutException;
-import java.net.UnknownHostException;
+
 
 //extends SMPPAPIExample
 public class EnviaSMS  {
 	private static final Logger logger = LogManager.getLogger(EnviaSMS.class);
 	private SoftCRSMSProperties propiedades = new SoftCRSMSProperties();
-	public void execute(String SMSCel, String SMSMensaje)
-				throws
-				RuntimeException
-//				SocketTimeoutException, IOException, VersionException,
-//				BadCommandIDException, SMPPProtocolException, RuntimeException,
-//				InterruptedException, UnknownHostException
-				{
-
+	public void execute(String SMSCel, String SMSMensaje) throws RuntimeException{
 		    try {
 		        logger.info("Binding to the SMSC");
 		    	System.out.println("Binding to the SMSC");

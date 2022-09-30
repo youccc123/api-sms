@@ -47,6 +47,13 @@
             <version>0.3.9</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.opensmpp</groupId>
+            <artifactId>opensmpp-core</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <!-- Thanks for using https://jar-download.com -->
+
         <!-- Dependencias Spring Boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -112,17 +119,47 @@
 
     </dependencies>
 
+<!--    <build>-->
+<!--        <finalName>${name}</finalName>-->
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--&lt;!&ndash;                <groupId>org.springframework.boot</groupId>&ndash;&gt;-->
+<!--&lt;!&ndash;                <artifactId>spring-boot-maven-plugin</artifactId>&ndash;&gt;-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-compiler-plugin</artifactId>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
     <build>
+        <finalName>${name}</finalName>
         <plugins>
             <plugin>
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <downloadSources>true</downloadSources>
+                    <downloadJavadocs>true</downloadJavadocs>
+                    <wtpversion>2.0</wtpversion>
+                    <projectnatures>
+                        <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+                        <projectnature>org.eclipse.jdt.core.javanature</projectnature>
+                        <projectnature>org.eclipse.wst.common.project.facet.core.nature</projectnature>
+                        <projectnature>org.eclipse.wst.common.modulecore.ModuleCoreNature</projectnature>
+                        <projectnature>org.eclipse.jem.workbench.JavaEMFNature</projectnature>
+                    </projectnatures>
+                    <additionalBuildcommands>
+                        <name>org.springframework.ide.eclipse.core.springbuilder</name>
+                    </additionalBuildcommands>
+                    <warContextRoot>${name}</warContextRoot>
+                    <wtpContextName>${name}</wtpContextName>
+                </configuration>
             </plugin>
         </plugins>
-    </build>
 
+    </build>
 <profiles>
         <profile>
             <id>develop</id>
